@@ -49,8 +49,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
             signUpDto.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
             UserEntity userEntity = signUpMapper.mapFrom(signUpDto);
-            userEntity.setRole(Role.USER);
-            userRepository.save(userEntity);
+            if(userEntity.getRole() != Role.ADMIN)
+          {
+              userRepository.save(userEntity);
+            }else{
+                throw new Exception("Not Permitted to create Admin Account");
+            }
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception error) {
             System.out.println(error);

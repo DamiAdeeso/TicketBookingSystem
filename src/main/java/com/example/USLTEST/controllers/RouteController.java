@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class RouteController {
     private final RouteService routeService;
@@ -34,7 +34,7 @@ public class RouteController {
         return routeService.getRouteById(id);
     }
 
-    @GetMapping
+    @GetMapping("/user/routes")
     public ResponseEntity<List<RouteDto>> getAllRoutes() {
         return routeService.getAllRoutes();
     }

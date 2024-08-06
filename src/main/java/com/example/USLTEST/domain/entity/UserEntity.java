@@ -63,7 +63,7 @@ public class UserEntity implements UserDetails {
     private Set<TicketEntity> tickets;
 
     @OneToOne
-    @JoinColumn(name = "bus_id", nullable = false)
+    @JoinColumn(name = "bus_id")
     private BusEntity bus;
 
     @Override
